@@ -166,9 +166,65 @@
 
       /* 9) Programa una función que obtenga un numero aleatorio entre 501 y 600 */
 
+      const randomNum = () =>
+        console.info(Math.round(Math.random() * 100) + 500);
+
+      randomNum();
+      randomNum();
+      randomNum();
+      randomNum();
+
+      console.clear();
+
       /* 10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true  */
 
+      const capicua = (num = 0) => {
+        if (!num) return console.warn("You must enter a number");
+        if (typeof num !== "number")
+          return console.error("value entered is not a number");
+
+        num = num.toString();
+        let reverseNum = num.split("").reverse().join("");
+
+        return num === reverseNum
+          ? console.info(`The number ${num} is capicua`)
+          : console.info(`The number ${num} is not capicua`);
+      };
+
+      capicua(2002); // The number 2002 is capicua
+      capicua(); // You must enter a number
+      capicua("2002"); // value entered is not a number
+      capicua(123); // The number 123 is not capicua
+
+      console.clear();
+
       /* 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120 */
+
+      const factorial = (num = undefined) => {
+        if (num === undefined) return console.warn("You must enter a number");
+        if (typeof num !== "number")
+          return console.error("Value entered is not a number");
+        if (num === 0)
+          return console.warn("You must enter a number greater than 0");
+        if (Math.sign(num) === -1)
+          return console.error("You must enter a positive number");
+
+        let factorial = 1;
+
+        for (let i = num; i > 1; i--) {
+          factorial *= i;
+        }
+
+        return console.info(`The factorial of ${num} is ${factorial}`);
+      };
+
+      factorial(5); // 120
+      factorial(); // You must enter a number
+      factorial("5"); // Value entered is not a number
+      factorial(0); // You must enter a number greater than 0
+      factorial(-5); // You must enter a positive number
+
+      console.clear();
 
       /* 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true */
 
