@@ -94,11 +94,75 @@
 
       /* 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH" */
 
+      const reverseText = (str = "") =>
+        !str
+          ? console.warn("You must enter a string")
+          : console.info(str.split("").reverse().join(""));
+
+      reverseText("Hola Mundo"); // odnuM aloH
+      reverseText(); // You must enter a string
+
+      console.clear();
+
       /* 6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2 */
+
+      const wordCount = (str = "", word = "") => {
+        if (!str) return console.warn("You must enter a string");
+        if (!word) return console.warn("You must enter a word to search");
+
+        let i = 0,
+          count = 0;
+
+        while (i !== -1) {
+          i = str.indexOf(word, i);
+          if (i !== -1) {
+            i++;
+            count++;
+          }
+        }
+
+        return console.info(`The word "${word}" appears ${count} times`);
+      };
+
+      wordCount("Hola mundo adios mundo", "mundo"); // 2
+      wordCount(); // You must enter a string
+      wordCount("Hola mundo adios mundo"); // You must enter a word to search
+      wordCount("", "mundo"); // You must enter a string
+
+      console.clear();
 
       /* 7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true */
 
+      const palindrome = (str = "") => {
+        if (!str) return console.warn("You must enter a string");
+
+        str = str.toLowerCase();
+        let reverseStr = str.split("").reverse().join("");
+
+        return str === reverseStr ? console.info(true) : console.info(false);
+      };
+
+      palindrome("Salas"); // true
+      palindrome("Hola Mundo"); // false
+      palindrome(); // You must enter a string
+
+      console.clear();
+
       /* 8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5 */
+
+      const removePattern = (str = "", pattern = "") =>
+        !str
+          ? console.warn("You must enter a string")
+          : !pattern
+          ? console.warn("You must enter a pattern to remove")
+          : console.info(str.replace(new RegExp(pattern, "ig"), ""));
+
+      removePattern("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz"); // 1, 2, 3, 4 y 5
+      removePattern(); // you must enter a string
+      removePattern("xyz1, xyz2, xyz3, xyz4 y xyz5"); // You must enter a pattern to remove
+      removePattern("fdaf,. sfafa, asdaf... asasf,a asff;assf ...", "[a-z]");
+
+      console.clear();
 
       /* 9) Programa una función que obtenga un numero aleatorio entre 501 y 600 */
 
