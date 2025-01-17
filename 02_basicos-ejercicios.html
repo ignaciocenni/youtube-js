@@ -341,7 +341,58 @@
 
       /* 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800 */
 
+      const applyDiscount = (amount = undefined, discount = 0) => {
+        if (amount === undefined)
+          return console.warn("You must enter an amount");
+        if (typeof amount !== "number")
+          return console.error("Value entered is not a number");
+        if (amount === 0) return console.warn("The amount cannot be 0");
+        if (Math.sign(amount) === -1)
+          return console.error("You must enter a positive number");
+        if (typeof discount !== "number")
+          return console.error("The discount must be a number");
+        if (Math.sign(discount) === -1)
+          return console.error("The discount must be a positive number");
+
+        return console.info(
+          `$${amount} - ${discount}% = $${amount - (amount * discount) / 100}`
+        );
+      };
+
+      applyDiscount(); // You must enter an amount
+      applyDiscount("1000", 20); // Value entered is not a number
+      applyDiscount(1000, 20); // 1000 - 20% = 800
+      applyDiscount(0, 20); // The amount cannot be 0
+      applyDiscount(-1000, 20); // You must enter a positive number
+
+      console.clear();
+
       /* 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020) */
+
+      const yearsPassed = (date = undefined) => {
+        if (date === undefined) return console.warn("You must enter a date");
+        if (!(date instanceof Date))
+          return console.error("Value entered is not a date");
+
+        let todayMinusDate = new Date().getTime() - date.getTime(),
+          yearsInMs = 1000 * 60 * 60 * 24 * 365,
+          years = Math.floor(todayMinusDate / yearsInMs);
+
+        return Math.sign(years) === -1
+          ? console.info(
+              `Faltan ${Math.abs(
+                years
+              )} años para llegar a ${date.getFullYear()}`
+            )
+          : Math.sign(years) === 1
+          ? console.info(`Han pasado ${years} años desde ${date.getFullYear()}`)
+          : console.info(`Estamos en el año actual`);
+      };
+
+      yearsPassed(); // You must enter a date
+      yearsPassed("1984,4,23"); // Value entered is not a date
+      yearsPassed(new Date(1984, 4, 23)); // Han pasado 35 años desde 1984
+      yearsPassed(new Date(2025, 4, 23)); // Estamos en el año actual
 
       /* 18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5 */
 
