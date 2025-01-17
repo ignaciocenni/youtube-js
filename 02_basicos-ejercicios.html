@@ -397,9 +397,75 @@
 
       /* 18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5 */
 
+      const vowelsAndConsonants = (str = "") => {
+        if (!str) return console.warn("You must enter a string");
+        if (typeof str !== "string")
+          return console.error("Value entered is not a string");
+
+        let vowels = 0,
+          consonants = 0;
+
+        for (let i of str) {
+          if (/[aeiouáéíóúü]/i.test(i)) vowels++;
+          if (/[bcdfghjklmnñpqrstvwxyz]/i.test(i)) consonants++;
+        }
+
+        return console.info({
+          str,
+          vowels,
+          consonants,
+        });
+      };
+
+      vowelsAndConsonants("Hola Mundo"); // {str: "hola mundo", vowels: 4, consonants: 5}
+      vowelsAndConsonants(); // You must enter a string
+      vowelsAndConsonants(1); // Value entered is not a string
+
+      console.clear();
+
       /* 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero */
 
+      const validateName = (name = "") => {
+        if (!name) return console.warn("You must enter a name");
+        if (typeof name !== "string")
+          return console.error("Value entered is not a string");
+
+        let regExp = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/g.test(name);
+
+        return regExp
+          ? console.info(`${name}, is a valid name`)
+          : console.info(`${name}, is not a valid name`);
+      };
+
+      validateName("Jonathan MirCha"); // Jonathan MirCha, is a valid name
+      validateName(); // You must enter a name
+      validateName(1); // Value entered is not a string
+      validateName("Jonathan MirCha 123"); // Jonathan MirCha 123, is not a valid name
+
+      console.clear();
+
       /* 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero */
+
+      const validateEmail = (email = "") => {
+        if (!email) return console.warn("You must enter an email");
+        if (typeof email !== "string")
+          return console.error("Value entered is not a string");
+
+        let regExp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g.test(
+          email
+        );
+
+        return regExp
+          ? console.info(`${email}, is a valid email`)
+          : console.info(`${email}, is not a valid email`);
+      };
+
+      validateEmail(""); // You must enter an email
+      validateEmail(1); // Value entered is not a string
+      validateEmail("example@mail.com"); // example@mail.com, is a valid email
+      validateEmail("example@mail"); // example@mail, is not a valid email
+
+      console.clear();
 
       /* 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25] */
 
