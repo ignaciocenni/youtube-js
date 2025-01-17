@@ -228,11 +228,116 @@
 
       /* 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true */
 
+      const isPrime = (num = undefined) => {
+        if (num === undefined) return console.warn("You must enter a number");
+        if (typeof num !== "number")
+          return console.error("Value entered is not a number");
+        if (num === 0) return console.warn("The number cannot be 0");
+        if (num === 1) return console.warn("The number cannot be 1");
+        if (Math.sign(num) === -1)
+          return console.error("You must enter a positive number");
+
+        let divisible = false;
+
+        for (let i = 2; i < num; i++) {
+          if (num % i === 0) {
+            divisible = true;
+            break;
+          }
+        }
+
+        return divisible
+          ? console.info(`The number ${num} is not prime`)
+          : console.info(`The number ${num} is prime`);
+      };
+
+      isPrime(); // You must enter a number
+      isPrime("7"); // Value entered is not a number
+      isPrime(7); // The number 7 is prime
+      isPrime(1); // The number cannot be 1
+      isPrime(-13); // You must enter a positive number
+      isPrime(13); // The number 9 is prime
+      isPrime(200); // The number 200 is not prime
+
+      console.clear();
+
       /* 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar */
+
+      const evenOrOdd = (num = undefined) => {
+        if (num === undefined) return console.warn("You must enter a number");
+        if (typeof num !== "number")
+          return console.error("Value entered is not a number");
+
+        return num % 2 === 0
+          ? console.info(`The number ${num} is even`)
+          : console.info(`The number ${num} is odd`);
+      };
+
+      evenOrOdd(); // You must enter a number
+      evenOrOdd("29"); // Value entered is not a number
+      evenOrOdd(29); // The number 29 is odd
+      evenOrOdd(30); // The number 30 is even
+      evenOrOdd(-3); // The number -3 is odd
+
+      console.clear();
 
       /* 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F */
 
+      const temperatureConverter = (temp = undefined, unit = undefined) => {
+        if (temp === undefined || unit === undefined)
+          return console.warn("You must enter a temperature and a unit");
+        if (typeof temp !== "number")
+          return console.error("Value entered is not a number");
+        if (unit !== "C" && unit !== "F")
+          return console.error("You must enter a valid unit");
+
+        let result;
+
+        if (unit === "C") {
+          result = (temp * 9) / 5 + 32;
+          return console.info(`${temp}°C is equal to ${result}°F`);
+        } else {
+          result = ((temp - 32) * 5) / 9;
+          return console.info(`${temp}°F is equal to ${result}°C`);
+        }
+      };
+
+      temperatureConverter(); // You must enter a temperature and a unit
+      temperatureConverter("0", "C"); // Value entered is not a number
+      temperatureConverter(0, "C"); // 0°C is equal to 32°F
+      temperatureConverter(32, "F"); // 32°F is equal to 0°C
+      temperatureConverter(100, "C"); // 100°C is equal to 212°F
+      temperatureConverter(212, "F"); // 100°C is equal to 212°F
+
+      console.clear();
+
       /* 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10 */
+
+      const baseConverter = (num = undefined, base = undefined) => {
+        if (num === undefined || base === undefined)
+          return console.warn("You must enter a number and a base");
+        if (typeof num !== "number" || typeof base !== "number")
+          return console.error("Both values must be numbers");
+        if (base === 2) {
+          return console.info(
+            `${num} base ${base} = ${parseInt(num, base)} base 10`
+          );
+        } else if (base === 10) {
+          return console.info(
+            `${num} base ${base} = ${num.toString(base)} base 2`
+          );
+        } else {
+          return console.error("Invalid base");
+        }
+      };
+
+      baseConverter(); // You must enter a number and a base
+      baseConverter("100", 2); // Both values must be numbers
+      baseConverter(100, 2); // 100 base 2 = 4 base 10
+      baseConverter(4, 10); // 4 base 10 = 100 base 2
+      baseConverter(100, 3); // Invalid base
+
+      console.clear();
 
       /* 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800 */
 
