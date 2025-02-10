@@ -657,7 +657,227 @@
            - Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de forma automatizada e imprime la ficha técnica de cada película.
 
          * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
-         */
+      */
+
+      class Movie {
+        constructor({
+          id,
+          title,
+          director,
+          releaseYear,
+          countries,
+          genres,
+          rating,
+        }) {
+          this.id = id;
+          this.title = title;
+          this.director = director;
+          this.releaseYear = releaseYear;
+          this.countries = countries;
+          this.genres = genres;
+          this.rating = rating;
+
+          this.validateIMDB(id);
+          this.validateTitle(title);
+          this.validateDirector(director);
+          this.validateReleaseYear(releaseYear);
+          this.validateCountry(countries);
+          this.validateGenres(genres);
+          this.validateRating(rating);
+        }
+
+        static get genres() {
+          return [
+            "Action",
+            "Adult",
+            "Adventure",
+            "Animation",
+            "Biography",
+            "Comedy",
+            "Crime",
+            "Documentary",
+            "Drama",
+            "Family",
+            "Fantasy",
+            "Film Noir",
+            "Game-Show",
+            "History",
+            "Horror",
+            "Musical",
+            "Music",
+            "Mystery",
+            "News",
+            "Reality-TV",
+            "Romance",
+            "Sci-Fi",
+            "Short",
+            "Sport",
+            "Talk-Show",
+            "Thriller",
+            "War",
+            "Western",
+          ];
+        }
+
+        static genresAccepted() {
+          return console.info(
+            `The accepted genres are: ${Movie.genres.join(", ")}`
+          );
+        }
+
+        validateString(prop, value) {
+          if (!value) return console.warn(`${prop} "${value}" is empty`);
+          if (typeof value !== "string")
+            return console.error(`${prop} "${value}" is not a string`);
+
+          return true;
+        }
+
+        validateLengthString(prop, value, length) {
+          if (value.length > length)
+            return console.error(
+              `${prop} "${value}" is too long (max ${length} characters)`
+            );
+
+          return true;
+        }
+
+        validateNumber(prop, value) {
+          if (!value) return console.warn(`${prop} "${value}" is empty`);
+          if (typeof value !== "number")
+            return console.error(`${prop} "${value}" is not a number`);
+
+          return true;
+        }
+
+        validateArray(prop, value) {
+          if (!value) return console.warn(`${prop} "${value}" is empty`);
+          if (!(value instanceof Array))
+            return console.error(`${prop} "${value}" is not an array`);
+          if (value.length === 0)
+            return console.warn(`${prop} "${value}" is empty`);
+
+          for (let string of value) {
+            if (typeof string !== "string")
+              return console.error(`${prop} "${string}" is not a string`);
+          }
+
+          return true;
+        }
+
+        validateIMDB(id) {
+          if (this.validateString("IMDB id", id))
+            if (!/^([a-z]){2}([0-9]){7}$/.test(id))
+              return console.error(
+                `IMDB id "${id}" is not valid (must have 9 characters, the first 2 letters and the next 7 numbers)`
+              );
+        }
+
+        validateTitle(title) {
+          if (this.validateString("Title", title))
+            this.validateLengthString("Title", title, 100);
+        }
+
+        validateDirector(director) {
+          if (this.validateString("Director", director))
+            this.validateLengthString("Director", director, 50);
+        }
+
+        validateReleaseYear(releaseYear) {
+          if (this.validateNumber("Release year", releaseYear))
+            if (!/^([0-9]){4}$/.test(releaseYear))
+              return console.error(
+                `Release year "${releaseYear}" is not valid (must be a 4-digit number)`
+              );
+        }
+
+        validateCountry(countries) {
+          this.validateArray("Countries", countries);
+        }
+
+        validateGenres(genres) {
+          if (this.validateArray("Genres", genres)) {
+            for (let genre of genres) {
+              // console.log(genre, Movie.genres.includes(genre));
+
+              if (!Movie.genres.includes(genre)) {
+                console.error(`Incorrects genre(s) "${genres.join(", ")}"`);
+
+                Movie.genresAccepted();
+              }
+            }
+          }
+        }
+
+        validateRating(rating) {
+          if (this.validateNumber("Rating", rating))
+            return rating < 0 || rating > 10
+              ? console.error(
+                  `Rating "${rating}" is not valid (must be a number between 0 and 10)`
+                )
+              : (this.rating = rating.toFixed(1));
+        }
+
+        technicalSheet() {
+          console.info(
+            `Title: ${this.title}\nDirector: ${this.director}\nRelease Year: ${
+              this.releaseYear
+            }\nCountries: ${this.countries.join(
+              " - "
+            )}\nGenres: ${this.genres.join(", ")}\nRating: ${
+              this.rating
+            }\nIMDB id: ${this.id}`
+          );
+        }
+      }
+
+      // Movie.genresAccepted();
+
+      // const movie = new Movie({
+      //   id: "tt1234567",
+      //   title: "Movie Title",
+      //   director: "Director Name",
+      //   releaseYear: 2021,
+      //   countries: ["Mexico", "USA"],
+      //   genres: ["Action", "Adventure"],
+      //   rating: 9.5,
+      // });
+
+      // movie.technicalSheet();
+
+      const movies = [
+        {
+          id: "tt1234567",
+          title: "Movie Title",
+          director: "Director Name",
+          releaseYear: 2021,
+          countries: ["Mexico", "USA"],
+          genres: ["Action", "Adventure"],
+          rating: 9.5,
+        },
+        {
+          id: "tt7654321",
+          title: "Movie Title 2",
+          director: "Director Name 2",
+          releaseYear: 2020,
+          countries: ["Mexico", "USA"],
+          genres: ["Action", "Adventure"],
+          rating: 8.5,
+        },
+        {
+          id: "tt1357924",
+          title: "Movie Title 3",
+          director: "Director Name 3",
+          releaseYear: 2019,
+          countries: ["Mexico", "USA"],
+          genres: ["Action", "Adventure"],
+          rating: 7.5,
+        },
+      ];
+
+      movies.forEach((el) => new Movie(el).technicalSheet());
+
+      console.clear();
     </script>
   </body>
 </html>
