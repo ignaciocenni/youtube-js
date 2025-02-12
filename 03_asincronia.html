@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asíncronía en JavaScript</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asíncronía en JavaScript</title>
-</head>
+  <body>
+    <h1>Asíncronía en JavaScript</h1>
+    <script>
+      /* **********     Curso JavaScript: 44. Temporizadores (setTimeout & setInterval) - #jonmircha     ********** */
 
-<body>
-  <h1>Asíncronía en JavaScript</h1>
-  <script>
-    /* **********     Curso JavaScript: 44. Temporizadores (setTimeout & setInterval) - #jonmircha     ********** */
-
-    /* console.log("inicio");
+      /* console.log("inicio");
 
     setTimeout(() => {
       console.log("Ejecutando un setTimeout, esto se ejecuta una sóla vez");
@@ -22,27 +21,23 @@
       console.log("Ejecutando un setInterval, esto se ejecuta indefinidaente cada cierto intervalo de tiempo");
     }, 1000); */
 
-    /* let temporizador = setTimeout(() => {
+      /* let temporizador = setTimeout(() => {
       console.log(new Date().toLocaleTimeString());
     }, 1000);
 
     clearTimeout(temporizador);
     console.log("después del clearTimeout"); */
 
-    /* let temporizador = setInterval(() => {
+      /* let temporizador = setInterval(() => {
       console.log(new Date().toLocaleTimeString());
     }, 1000);
 
     clearInterval(temporizador);
     console.log("después del clearInterval"); */
 
+      /* **********     Curso JavaScript: 45. Asincronía y el Event Loop - #jonmircha     ********** */
 
-
-
-
-    /* **********     Curso JavaScript: 45. Asincronía y el Event Loop - #jonmircha     ********** */
-
-    /*  Antes de explicar como funciona el modelo de JavaScript es importante entender algunos conceptos:
+      /*  Antes de explicar como funciona el modelo de JavaScript es importante entender algunos conceptos:
 
      Procesamiento Single thread y Multi thread.
      Operaciones de CPU y Operaciones de I / O.
@@ -53,8 +48,7 @@
      Javascript usa un modelo asíncrono y no bloqueante, con un loop de eventos implementado en un sólo hilo, (single thread) para operaciones de entrada y salida (input/output).
      */
 
-
-    /* //Código Síncrono Bloquenate
+      /* //Código Síncrono Bloquenate
     (() => {
       console.log("Código Síncrono");
       console.log("Inicio");
@@ -98,13 +92,9 @@
       console.log("Fin");
     })(); */
 
+      /* **********     Curso JavaScript: 46. Callbacks - #jonmircha     ********** */
 
-
-
-
-    /* **********     Curso JavaScript: 46. Callbacks - #jonmircha     ********** */
-
-    /* function cuadradoCallback(value, callback) {
+      /* function cuadradoCallback(value, callback) {
       setTimeout(() => {
         callback(value, value * value);
       }, 0 | Math.random() * 1000);
@@ -133,13 +123,9 @@
       });
     }); */
 
+      /* **********     Curso JavaScript: 47. Promesas - #jonmircha     ********** */
 
-
-
-
-    /* **********     Curso JavaScript: 47. Promesas - #jonmircha     ********** */
-
-    /*     function cuadradoPromise(value) {
+      /*     function cuadradoPromise(value) {
           if (typeof value !== "number") {
             return Promise.reject(`Error, el valor " ${value} " ingresado no es un número`);
           }
@@ -183,13 +169,9 @@
           })
           .catch(err => console.error(err)); */
 
+      /* **********     Curso JavaScript: 48. Async - Await - #jonmircha     ********** */
 
-
-
-
-    /* **********     Curso JavaScript: 48. Async - Await - #jonmircha     ********** */
-
-    /* function cuadradoPromise(value) {
+      /* function cuadradoPromise(value) {
       if (typeof value !== "number") {
         return Promise.reject(`Error, el valor " ${value} " ingresado no es un número`);
       }
@@ -260,7 +242,6 @@
     }
 
     funcionAsincronaExpresada(); */
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
